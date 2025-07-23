@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image } from 'react-native';
 
 import ChaptersScreen from '../screens/ChaptersScreen';
 import VersesScreen from '../screens/VersesScreen';
@@ -77,22 +78,48 @@ const AppNavigator = () => {
       <Tab.Screen
         name="Psalms"
         component={PsalmsStackNavigator}
+        options={{
+          tabBarIcon: ({ color, size, focused }) => (
+            <Image
+              source={require('../assets/icons/png/IconsPsalms.png')}
+              style={{
+                width: size || 24,
+                height: size || 24,
+                tintColor: color,
+                opacity: focused ? 1 : 0.6,
+              }}
+              resizeMode="contain"
+            />
+          ),
+        }}
       />
       <Tab.Screen
         name="Library"
         component={LibraryScreen}
         options={{
+          tabBarIcon: ({ color, size, focused }) => (
+            <Image
+              source={require('../assets/icons/png/IconsLibrary.png')}
+              style={{
+                width: size || 24,
+                height: size || 24,
+                tintColor: color,
+                opacity: focused ? 1 : 0.6,
+              }}
+              resizeMode="contain"
+            />
+          ),
           headerShown: true,
           title: 'Highlight Library',
           headerStyle: { 
-          backgroundColor: '#181919',
-          borderBottomWidth: 1,
-          borderBottomColor: '#272828',
-        },
-        headerTitleStyle: {
-        fontFamily: 'FKGroteskNeueTrial-Regular', // Custom font
-        fontSize: 18, // Larger font size
-        },
+            backgroundColor: '#181919',
+            borderBottomWidth: 1,
+            borderBottomColor: '#272828',
+          },
+          headerTitleStyle: {
+            fontFamily: 'FKGroteskNeueTrial-Regular', // Custom font
+            fontSize: 18, // Larger font size
+          },
           headerTintColor: darkThemeColors.text,
         }}
       />
