@@ -22,7 +22,15 @@ const PsalmsStackNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: darkThemeColors.header },
+        headerStyle: { 
+        backgroundColor: '#181919',
+        borderBottomWidth: 1,
+        borderBottomColor: '#272828',
+        },
+        headerTitleStyle: {
+        fontFamily: 'FKGroteskNeueTrial-Regular', // Custom font
+        fontSize: 18, // Larger font size
+        },
         headerTintColor: darkThemeColors.text,
       }}
     >
@@ -30,14 +38,14 @@ const PsalmsStackNavigator = () => {
         name="Chapters"
         component={ChaptersScreen}
         options={{
-          title: 'Book of Psalms',
+          title: 'davidi',
           headerStyle: {
             backgroundColor: '#181919', // New background color
             shadowOpacity: 0, // for iOS
             elevation: 0, // for Android
           },
           headerTitleStyle: {
-            fontFamily: 'FKGroteskNeueTrial-Regular', // Custom font
+            fontFamily: 'FKGroteskNeueTrial-Thin', // Custom font
             fontSize: 22, // Larger font size
           },
           // headerTintColor: '#FFFFFF' // This ensures back button is white
@@ -72,7 +80,15 @@ const AppNavigator = () => {
         options={{
           headerShown: true,
           title: 'Highlight Library',
-          headerStyle: { backgroundColor: darkThemeColors.header },
+          headerStyle: { 
+          backgroundColor: '#181919',
+          borderBottomWidth: 1,
+          borderBottomColor: '#272828',
+        },
+        headerTitleStyle: {
+        fontFamily: 'FKGroteskNeueTrial-Regular', // Custom font
+        fontSize: 18, // Larger font size
+        },
           headerTintColor: darkThemeColors.text,
         }}
       />

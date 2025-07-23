@@ -11,7 +11,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from 'react-native-modal';
 
-const HIGHLIGHT_COLORS = ['#251413', '#10212D', '#132522', '#251F13'];
+const HIGHLIGHT_COLORS = ['Red', 'Blue', 'Green', 'Orange'];
 const DARK_THEME = {
   background: '#181919',
   card: '#1C1E1E',
