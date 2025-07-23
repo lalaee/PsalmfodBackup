@@ -10,6 +10,8 @@ import {
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import psalmsData from '../data/psalms.json';
+import { HIGHLIGHT_COLORS, COLOR_LABELS } from '../constants/highlightColors';
+
 
 const LibraryScreen = ({ navigation }) => {
   const [groupedHighlights, setGroupedHighlights] = useState({});
@@ -73,17 +75,18 @@ const LibraryScreen = ({ navigation }) => {
   };
 
   const renderColorPill = ({ item }) => {
-    const isActive = item === selectedColor;
-    return (
-      <TouchableOpacity onPress={() => setSelectedColor(item)}>
-        <View style={[styles.pillContainer, isActive && styles.activePillContainer]}>
-            <Text style={[styles.pillText, isActive && styles.activePillText]}>
-                {item.charAt(0).toUpperCase() + item.slice(1)}
-            </Text>
-        </View>
-      </TouchableOpacity>
-    );
-  };
+  const isActive = item === selectedColor;
+  const label = COLOR_LABELS[item] || item;
+  return (
+    <TouchableOpacity onPress={() => setSelectedColor(item)}>
+      <View style={[styles.pillContainer, isActive && styles.activePillContainer]}>
+        <Text style={[styles.pillText, isActive && styles.activePillText]}>
+          {label}
+        </Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
   
   const renderVerseItem = ({ item }) => (
     <TouchableOpacity onPress={() => handleVersePress(item)}>

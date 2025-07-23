@@ -10,8 +10,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from 'react-native-modal';
-
-const HIGHLIGHT_COLORS = ['Red', 'Blue', 'Green', 'Orange'];
+import { HIGHLIGHT_COLORS } from '../constants/highlightColors';
 const DARK_THEME = {
   background: '#181919',
   card: '#1C1E1E',
@@ -110,13 +109,13 @@ const VersesScreen = ({ route, navigation }) => {
       >
         <View style={styles.modalContent}>
           <Text style={styles.modalTitle}>Highlight Verse</Text>
-          {HIGHLIGHT_COLORS.map(color => (
+          {HIGHLIGHT_COLORS.map(({ hex, label }) => (
             <TouchableOpacity
-              key={color}
-              style={[styles.colorButton, { backgroundColor: color.toLowerCase() }]}
-              onPress={() => handleHighlight(color.toLowerCase())}
-            >
-              <Text style={styles.colorButtonText}>{color}</Text>
+              key={hex}
+              style={[styles.colorButton, { backgroundColor: hex }]}
+              onPress={() => handleHighlight(hex)}
+          >
+           <Text style={styles.colorButtonText}>{label}</Text>
             </TouchableOpacity>
           ))}
           <View style={styles.separator} />
