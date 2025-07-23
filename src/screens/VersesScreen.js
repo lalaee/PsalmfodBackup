@@ -23,6 +23,12 @@ const HIGHLIGHT_LABEL_COLORS = {
   Green: '#00A380',
   Orange: '#A37500',
 };
+const HIGHLIGHT_BORDER_COLORS = {
+  Red: '#521800',
+  Blue: '#02356C',
+  Green: '#00523C',
+  Orange: '#524300',
+};
 
 const VersesScreen = ({ route, navigation }) => {
   const { chapter } = route.params;
@@ -115,16 +121,48 @@ const VersesScreen = ({ route, navigation }) => {
         style={styles.modal}
       >
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Highlight Verse</Text>
-          {HIGHLIGHT_COLORS.map(({ hex, label }) => (
-            <TouchableOpacity
-              key={hex}
-              style={[styles.colorButton, { backgroundColor: hex }]}
-              onPress={() => handleHighlight(hex)}
-          >
-           <Text style={[styles.colorButtonText, { color: HIGHLIGHT_LABEL_COLORS[label] || '#fff', fontWeight: 'bold' }]}>{label}</Text>
-            </TouchableOpacity>
-          ))}
+          <Text style={[styles.modalTitle, { color: '#E5E5E2', marginBottom: 24 }]}>Highlight Verse</Text>
+          <View style={{ marginBottom: 16 }}>
+            <FlatList
+              data={HIGHLIGHT_COLORS}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={({ hex }) => hex}
+              contentContainerStyle={{ gap: 8 }}
+              renderItem={({ item: { hex, label } }) => (
+                <TouchableOpacity
+                  style={[
+                    styles.colorButton,
+                    {
+                      backgroundColor: hex,
+                      borderRadius: 30,
+                      borderWidth: 1,
+                      borderColor: HIGHLIGHT_BORDER_COLORS[label] || '#fff',
+                      minWidth: 80,
+                      height: undefined,
+                      minHeight: 0,
+                      paddingHorizontal: 12,
+                      paddingVertical: 9,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    },
+                  ]}
+                  onPress={() => handleHighlight(hex)}
+                >
+                  <Text style={[
+                    styles.colorButtonText,
+                    {
+                      color: HIGHLIGHT_LABEL_COLORS[label] || '#fff',
+                      fontFamily: 'FKGroteskNeueTrial-Regular',
+                      fontSize: 14,
+                    },
+                  ]}>
+                    {label}
+                  </Text>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
           <View style={styles.separator} />
           <Button title="Remove Highlight" color="red" onPress={() => handleHighlight(null)} />
         </View>
@@ -166,7 +204,7 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 20,
-    fontFamily: 'FKGroteskNeueTrial-Regular',
+    fontFamily: 'FKGroteskNeueTrial',
     marginBottom: 12,
     textAlign: 'center',
     color: '#B9B9B1',
