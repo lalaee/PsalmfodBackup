@@ -74,18 +74,41 @@ const LibraryScreen = ({ navigation }) => {
   };
 
   const renderColorPill = ({ item }) => {
-  const isActive = item === selectedColor;
-  const label = COLOR_LABELS[item] || item;
-  return (
-    <TouchableOpacity onPress={() => setSelectedColor(item)}>
-      <View style={[styles.pillContainer, isActive && styles.activePillContainer]}>
-        <Text style={[styles.pillText, isActive && styles.activePillText]}>
-          {label}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  );
-};
+    const isActive = item === selectedColor;
+    const label = COLOR_LABELS[item] || item;
+    // Find the highlight color object for active state
+    const highlightObj = HIGHLIGHT_COLORS.find(c => c.hex === item);
+    const activeBgColor = highlightObj ? highlightObj.hex : '#EAEAEA';
+    const activeBorderColor = highlightObj ? highlightObj.hex : '#EAEAEA';
+    const activeLabelColor = '#EAEAEA'; // Modal uses white text for active
+
+    return (
+      <TouchableOpacity onPress={() => setSelectedColor(item)}>
+        <View
+          style={[
+            styles.pillContainer,
+            {
+              backgroundColor: isActive ? activeBgColor : '#181919',
+              borderColor: isActive ? activeBorderColor : '#262828',
+              borderWidth: 1,
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.pillText,
+              {
+                color: isActive ? activeLabelColor : '#8B8B8A',
+                fontFamily: 'FKGroteskNeueTrial-Regular',
+              },
+            ]}
+          >
+            {label}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
   
   const renderVerseItem = ({ item }) => (
     <TouchableOpacity onPress={() => handleVersePress(item)}>
@@ -145,17 +168,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 20,
     marginRight: 10,
-    backgroundColor: '#2C2C2C',
-  },
-  activePillContainer: {
-    backgroundColor: '#EAEAEA',
+    backgroundColor: '#181919', // default inactive
+    borderWidth: 1,
+    borderColor: '#262828', // default inactive
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: 48,
+    minHeight: 36,
   },
   pillText: {
-    color: '#EAEAEA',
-    fontWeight: 'bold',
-  },
-  activePillText: {
-    color: '#121212',
+    fontWeight: '400',
+    fontSize: 15,
+    color: '#8B8B8A', // default inactive
+    fontFamily: 'FKGroteskNeueTrial-Regular',
+    textAlign: 'center',
   },
   verseListContainer: {
     paddingBottom: 20,

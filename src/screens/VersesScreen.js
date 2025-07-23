@@ -164,7 +164,7 @@ const VersesScreen = ({ route, navigation }) => {
             />
           </View>
           <View style={styles.separator} />
-          <Button title="Remove Highlight" color="red" onPress={() => handleHighlight(null)} />
+          <Button title="Remove Highlight" color='#B9B9B1' onPress={() => handleHighlight(null)} />
         </View>
       </Modal>
     </SafeAreaView>
