@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,7 +11,6 @@ import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import psalmsData from '../data/psalms.json';
 import { HIGHLIGHT_COLORS, COLOR_LABELS } from '../constants/highlightColors';
-
 
 const LibraryScreen = ({ navigation }) => {
   const [groupedHighlights, setGroupedHighlights] = useState({});

@@ -68,6 +68,10 @@ const AppNavigator = () => {
           backgroundColor: darkThemeColors.header,
           borderTopWidth: 0,
         },
+        tabBarLabelStyle: {
+          fontFamily: 'FKGroteskNeueTrial-Regular',
+          fontSize: 12,
+        },
       }}
     >
       <Tab.Screen
