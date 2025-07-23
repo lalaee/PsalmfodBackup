@@ -17,6 +17,13 @@ const DARK_THEME = {
   text: '#000000',
 };
 
+const HIGHLIGHT_LABEL_COLORS = {
+  Red: '#A30000',
+  Blue: '#0092CC',
+  Green: '#00A380',
+  Orange: '#A37500',
+};
+
 const VersesScreen = ({ route, navigation }) => {
   const { chapter } = route.params;
   const [highlights, setHighlights] = useState({});
@@ -115,7 +122,7 @@ const VersesScreen = ({ route, navigation }) => {
               style={[styles.colorButton, { backgroundColor: hex }]}
               onPress={() => handleHighlight(hex)}
           >
-           <Text style={styles.colorButtonText}>{label}</Text>
+           <Text style={[styles.colorButtonText, { color: HIGHLIGHT_LABEL_COLORS[label] || '#fff', fontWeight: 'bold' }]}>{label}</Text>
             </TouchableOpacity>
           ))}
           <View style={styles.separator} />

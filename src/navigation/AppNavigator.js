@@ -6,6 +6,8 @@ import { Image } from 'react-native';
 import ChaptersScreen from '../screens/ChaptersScreen';
 import VersesScreen from '../screens/VersesScreen';
 import LibraryScreen from '../screens/LibraryScreen';
+import IconsPsalms from '../assets/icons/svg/IconsPsalms.svg';
+import IconsLibrary from '../assets/icons/svg/IconsLibrary.svg';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -79,17 +81,8 @@ const AppNavigator = () => {
         name="Psalms"
         component={PsalmsStackNavigator}
         options={{
-          tabBarIcon: ({ color, size, focused }) => (
-            <Image
-              source={require('../assets/icons/png/IconsPsalms.png')}
-              style={{
-                width: size || 24,
-                height: size || 24,
-                tintColor: color,
-                opacity: focused ? 1 : 0.6,
-              }}
-              resizeMode="contain"
-            />
+          tabBarIcon: ({ color }) => (
+            <IconsPsalms width={16} height={16} color={color} />
           ),
         }}
       />
@@ -97,17 +90,8 @@ const AppNavigator = () => {
         name="Library"
         component={LibraryScreen}
         options={{
-          tabBarIcon: ({ color, size, focused }) => (
-            <Image
-              source={require('../assets/icons/png/IconsLibrary.png')}
-              style={{
-                width: size || 24,
-                height: size || 24,
-                tintColor: color,
-                opacity: focused ? 1 : 0.6,
-              }}
-              resizeMode="contain"
-            />
+          tabBarIcon: ({ color }) => (
+            <IconsLibrary width={16} height={16} color={color} />
           ),
           headerShown: true,
           title: 'Highlight Library',

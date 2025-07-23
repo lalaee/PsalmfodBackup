@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginVertical: 4,
     marginHorizontal: 16,
-    borderRadius: 8,
+    borderRadius: 50,
     borderColor: '#292B2B',
   },
   itemText: {

@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 16,
-    fontFamily: 'FKGroteskNeueTrial-LightItalic',
+    fontFamily: 'FKGroteskNeueTrial-Regular',
     lineHeight: 24,
     marginBottom: 8,
     color: '#B9B9B1',
