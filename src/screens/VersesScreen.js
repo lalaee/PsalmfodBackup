@@ -18,7 +18,7 @@ const DARK_THEME = {
 };
 
 const HIGHLIGHT_LABEL_COLORS = {
-  Red: '#A30000',
+  Red: '#E00000', // changed only for label
   Blue: '#0092CC',
   Green: '#00A380',
   Orange: '#A37500',
@@ -122,7 +122,7 @@ const VersesScreen = ({ route, navigation }) => {
       >
         <View style={styles.modalContent}>
           <Text style={[styles.modalTitle, { color: '#E5E5E2', marginBottom: 24 }]}>Highlight Verse</Text>
-          <View style={{ marginBottom: 16 }}>
+          <View style={{ marginBottom: 4 }}>
             <FlatList
               data={HIGHLIGHT_COLORS}
               horizontal
@@ -155,6 +155,7 @@ const VersesScreen = ({ route, navigation }) => {
                       color: HIGHLIGHT_LABEL_COLORS[label] || '#fff',
                       fontFamily: 'FKGroteskNeueTrial-Regular',
                       fontSize: 14,
+                      fontWeight: '400', // ensure not bold
                     },
                   ]}>
                     {label}
@@ -163,8 +164,13 @@ const VersesScreen = ({ route, navigation }) => {
               )}
             />
           </View>
-          <View style={styles.separator} />
-          <Button title="Remove Highlight" color='#B9B9B1' onPress={() => handleHighlight(null)} />
+          {/* Only show Remove Highlight if the selected verse is already highlighted */}
+          {selectedVerse && highlights[getHighlightKey(chapter.chapter, selectedVerse.verse)] && (
+            <>
+              <View style={[styles.separator, { marginTop: 8, marginBottom: 12 }]} />
+              <Button title="Remove Highlight" color='#B9B9B1' onPress={() => handleHighlight(null)} />
+            </>
+          )}
         </View>
       </Modal>
     </SafeAreaView>

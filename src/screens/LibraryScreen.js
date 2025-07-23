@@ -10,7 +10,15 @@ import {
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import psalmsData from '../data/psalms.json';
-import { HIGHLIGHT_COLORS, COLOR_LABELS } from '../constants/highlightColors';
+import { HIGHLIGHT_COLORS, COLOR_LABELS, HIGHLIGHT_BORDER_COLORS } from '../constants/highlightColors';
+
+// Label colors for each highlight, by label (copied from VersesScreen.js for consistency)
+const HIGHLIGHT_LABEL_COLORS = {
+  Red: '#E00000', // changed only for label
+  Blue: '#0092CC',
+  Green: '#00A380',
+  Orange: '#A37500',
+};
 
 const LibraryScreen = ({ navigation }) => {
   const [groupedHighlights, setGroupedHighlights] = useState({});
@@ -78,9 +86,11 @@ const LibraryScreen = ({ navigation }) => {
     const label = COLOR_LABELS[item] || item;
     // Find the highlight color object for active state
     const highlightObj = HIGHLIGHT_COLORS.find(c => c.hex === item);
+    // Get the border color for the active pill by label
+    const activeBorderColor = highlightObj ? HIGHLIGHT_BORDER_COLORS[highlightObj.label] : '#EAEAEA';
     const activeBgColor = highlightObj ? highlightObj.hex : '#EAEAEA';
-    const activeBorderColor = highlightObj ? highlightObj.hex : '#EAEAEA';
-    const activeLabelColor = '#EAEAEA'; // Modal uses white text for active
+    // Use modal label color for active pills
+    const activeLabelColor = highlightObj ? HIGHLIGHT_LABEL_COLORS[highlightObj.label] : '#EAEAEA';
 
     return (
       <TouchableOpacity onPress={() => setSelectedColor(item)}>
@@ -98,7 +108,7 @@ const LibraryScreen = ({ navigation }) => {
             style={[
               styles.pillText,
               {
-                color: isActive ? activeLabelColor : '#8B8B8A',
+              color: isActive ? activeLabelColor : '#8B8B8A',
                 fontFamily: 'FKGroteskNeueTrial-Regular',
               },
             ]}
@@ -173,7 +183,7 @@ const styles = StyleSheet.create({
     borderColor: '#262828', // default inactive
     alignItems: 'center',
     justifyContent: 'center',
-    minWidth: 48,
+    minWidth: 80, // uniform width for all pills
     minHeight: 36,
   },
   pillText: {

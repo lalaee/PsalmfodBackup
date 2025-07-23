@@ -78,7 +78,7 @@ const AppNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="Psalms"
+        name="Chapters"
         component={PsalmsStackNavigator}
         options={{
           tabBarIcon: ({ color }) => (
@@ -94,7 +94,7 @@ const AppNavigator = () => {
             <IconsLibrary width={16} height={16} color={color} />
           ),
           headerShown: true,
-          title: 'Highlight Library',
+          title: 'Highlights',
           headerStyle: { 
             backgroundColor: '#181919',
             borderBottomWidth: 1,

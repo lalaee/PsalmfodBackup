@@ -1,3 +1,10 @@
+// Border colors for each highlight, by label
+export const HIGHLIGHT_BORDER_COLORS = {
+  Red: '#521800',
+  Blue: '#02356C',
+  Green: '#00523C',
+  Orange: '#524300',
+};
 export const HIGHLIGHT_COLORS = [
   { hex: '#251413', label: 'Red' },
   { hex: '#10212D', label: 'Blue' },
