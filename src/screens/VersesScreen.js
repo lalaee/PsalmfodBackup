@@ -1,4 +1,6 @@
+// import IconsPsalms from '../assets/icons/svg/IconsPsalms.svg';
 import React, { useState, useEffect, useLayoutEffect } from 'react';
+import psalmsData from '../data/psalms.json';
 import {
   StyleSheet,
   Text,
@@ -59,6 +61,33 @@ const VersesScreen = ({ route, navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: `Psalm ${chapter.chapter}`,
+      headerRight: () => {
+        // Find the next chapter number
+        const currentChapterNum = chapter.chapter;
+        const nextChapterNum = currentChapterNum + 1;
+        // Check if next chapter exists in psalmsData
+        const nextChapter = psalmsData.find(p => p.chapter === nextChapterNum);
+        if (!nextChapter) return null;
+        return (
+          <TouchableOpacity
+            style={{ marginRight: 10, padding: 4 }}
+            onPress={() => {
+              navigation.replace('Verses', { chapter: nextChapter });
+            }}
+            accessibilityLabel="Next chapter"
+          >
+            <Text
+              style={{
+                color: '#E5E5E2', // match the Verse title label color
+                fontFamily: 'FKGroteskNeueTrial-Regular',
+                fontSize: 16,
+              }}
+            >
+              Next chapter
+            </Text>
+          </TouchableOpacity>
+        );
+      },
     });
   }, [navigation, chapter]);
 
