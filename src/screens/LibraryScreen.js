@@ -75,7 +75,7 @@ const LibraryScreen = ({ navigation }) => {
   );
 
   const handleVersePress = (item) => {
-    navigation.navigate('Psalms', {
+    navigation.navigate('Chapters', {
       screen: 'Verses',
       params: { chapter: item.fullChapter },
     });
